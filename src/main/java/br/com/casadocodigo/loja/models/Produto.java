@@ -16,12 +16,12 @@ public class Produto {
     @ElementCollection
     private List<Preco> precos;
 
-    public List<Preco> getPrecos() {
-        return precos;
+    public int getId() {
+        return id;
     }
 
-    public void setPrecos(List<Preco> precos) {
-        this.precos = precos;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -46,6 +46,14 @@ public class Produto {
 
     public void setPaginas(int paginas) {
         this.paginas = paginas;
+    }
+
+    public List<Preco> getPrecos() {
+        return precos;
+    }
+
+    public void setPrecos(List<Preco> precos) {
+        this.precos = precos;
     }
 
     @Override
