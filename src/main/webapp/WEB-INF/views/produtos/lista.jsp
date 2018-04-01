@@ -8,6 +8,8 @@
     <title>Livros de java, Android, Iphone, PHP, Ruby e muito mais -
         Casa do código</title>
 </head>
+
+<div>${sucesso}</div>
 <body>
 <table>
     <tr>
