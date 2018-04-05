@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +25,7 @@ import java.util.List;
 public class ProdutosController {
 
     @Autowired
-    private ProdutoDao produtoDao;
+    private ProdutoDao dao;
 
     @Autowired
     private FileSaver saver;
@@ -52,10 +53,7 @@ public class ProdutosController {
 
         produto.setSumarioPath(sumarioPath);
 
-
-        System.out.println(sumario.getOriginalFilename());
-
-        produtoDao.gravar(produto);
+        dao.gravar(produto);
 
         redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!");
 
@@ -64,9 +62,17 @@ public class ProdutosController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView listar() {
-        List<Produto> produtos = produtoDao.listar();
+        List<Produto> produtos = dao.listar();
         ModelAndView modelAndView = new ModelAndView("produtos/lista");
         modelAndView.addObject("produtos", produtos);
+        return modelAndView;
+    }
+
+    @RequestMapping("/detalhe/{id}")
+    public ModelAndView detalhe(@PathVariable("id") Integer id){
+        ModelAndView modelAndView = new ModelAndView("/produtos/detalhe");
+        Produto produto = dao.find(id);
+        modelAndView.addObject("produto", produto);
         return modelAndView;
     }
 }
