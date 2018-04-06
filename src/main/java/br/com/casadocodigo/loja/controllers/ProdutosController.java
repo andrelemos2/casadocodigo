@@ -1,4 +1,4 @@
-package br.com.casadocodigo.loja;
+package br.com.casadocodigo.loja.controllers;
 
 import br.com.casadocodigo.loja.daos.ProdutoDao;
 import br.com.casadocodigo.loja.infra.FileSaver;
@@ -76,3 +76,4 @@ public class ProdutosController {
         return modelAndView;
     }
 }
+

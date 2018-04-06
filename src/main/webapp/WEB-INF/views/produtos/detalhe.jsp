@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,8 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <link rel="icon" href="//cdn.shopify.com/s/files/1/0155/7645/t/177/assets/favicon.ico?11981592617154272979" type="image/ico"/>
+    <link rel="icon" href="//cdn.shopify.com/s/files/1/0155/7645/t/177/assets/favicon.ico?11981592617154272979"
+          type="image/ico"/>
     <link href="https://plus.googlecom/108540024862647200608" rel="publisher"/>
     <title>${produto.titulo} - Casa do Código</title>
     <link href="${contextPath}resources/css/cssbase-min.css" rel="stylesheet" type="text/css" media="all"/>
@@ -20,16 +22,13 @@
     <link href="${contextPath}resources/css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="${contextPath}resources/css/layout-colors.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="${contextPath}resources/css/responsive-style.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="${contextPath}resources/css/guia-do-programador-style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="${contextPath}resources/css/guia-do-programador-style.css" rel="stylesheet" type="text/css"
+          media="all"/>
     <link href="${contextPath}resources/css/produtos.css" rel="stylesheet" type="text/css" media="all"/>
     <link rel="canonical" href="http://www.casadocodigo.com.br/"/>
 </head>
 
-
-<h1>${contextPath}resources/css/fonts.css</h1>
-
 <body>
-
 
 <header id="layout-header">
     <div class="clearfix container">
@@ -39,7 +38,7 @@
             <nav id="main-nav">
 
                 <ul class="clearfix">
-                    <li><a href="/carrinho" rel="nofollow">Carrinho</a></li>
+                    <li><a href="/carrinho" rel="nofollow">Carrinho (${carrinhoCompras.quantidade}) </a></li>
 
                     <li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
 
@@ -77,7 +76,7 @@
                  class="product-featured-image"/>
             <h1 class="product-title">${produti.titulo}</h1>
             <p class="product-author">
-		        <span class="product-author-link"></span>
+                <span class="product-author-link"></span>
             </p>
 
             <p class="book-description">${produti.descricao}</p>
@@ -85,13 +84,14 @@
     </header>
 
     <section class="buy-options clearfix">
-        <form action="/carrinho/add" method="post" class="container">
+        <form action='<c:url value="/carrinho/add" />' method="post" class="container">
             <ul id="variants" class="clearfix">
-                <input type="hidden" name="produtoId" value="${produto.id}" />
+                <input type="hidden" name="produtoId" value="${produto.id}"/>
                 <c:forEach items="${produto.precos}" var="preco">
                     <li class="buy-option">
-                        <input type="radio" name="tipo" class="variant-radio" id="tipo" value="${preco.tipo}"  checked="checked"  />
-                        <label  class="variant-label">
+                        <input type="radio" name="tipo" class="variant-radio" id="tipo" value="${preco.tipo}"
+                               checked="checked"/>
+                        <label class="variant-label">
                                 ${preco.tipo}
                         </label>
                         <small class="compare-at-price">R$ 39,90</small>
@@ -99,7 +99,8 @@
                     </li>
                 </c:forEach>
             </ul>
-            <button type="submit" class="submit-image icon-basket-alt" alt="Compre Agora" title="Compre Agora${produto.titulo}"></button>
+            <button type="submit" class="submit-image icon-basket-alt" alt="Compre Agora"
+                    title="Compre Agora${produto.titulo}"></button>
         </form>
     </section>
 
@@ -114,7 +115,8 @@
             <h2 class="section-title">Dados do livro:</h2>
             <p>Número de páginas: <span>${produto.paginas}</span></p>
             <p></p>
-            <p>Data de publicação: ${produto.dataLancamento}</p>
+
+            <p>Data de publicação:${produto.dataLancamento}"/></p>
             <p>Encontrou um erro? <a href='/submissao-errata' target='_blank'>Submeta uma errata</a></p>
         </section>
     </div>
@@ -150,7 +152,8 @@
                 <li><a href="/pages/perguntas-frequentes">Perguntas Frequentes</a></li>
                 <li><a href="https://www.caelum.com.br">Caelum - Ensino e Inovação</a></li>
                 <li><a href="http://www.codecrushing.com/" rel="nofollow">Code Crushing</a></li>
-                <li><a href="http://www.casadocodigo.com.br/pages/politica-de-privacidade" rel="nofollow">Política de Privacidade</a></li>
+                <li><a href="http://www.casadocodigo.com.br/pages/politica-de-privacidade" rel="nofollow">Política de
+                    Privacidade</a></li>
             </ul>
             <p class="footer-title">Redes Sociais</p>
             <ul>
